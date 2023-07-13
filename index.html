@@ -22,6 +22,10 @@
     .form-section {
       margin-bottom: 20px;
     }
+    
+    .error-message {
+      color: red;
+    }
   </style>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
@@ -31,39 +35,69 @@
     });
 
     function submitOrder() {
-      var listItems = $(".sortable-list li").map(function() {
-        return $(this).text();
-      }).get();
-
-      // Check if the list is arranged in ascending order
-      var isAscending = true;
-      for (var i = 1; i < listItems.length; i++) {
-        if (listItems[i] < listItems[i - 1]) {
-          isAscending = false;
-          break;
-        }
-      }
+      // Clear previous error messages
+      $(".error-message").text("");
 
       // Retrieve form data
       var name = $("#name").val();
       var email = $("#email").val();
       var phone = $("#phone").val();
       var opinions = [];
+      var hasError = false;
+
+      // Check if name, email, and phone are filled
+      if (!name.trim()) {
+        $("#name-error").text("Name is required");
+        hasError = true;
+      }
+      
+      if (!email.trim()) {
+        $("#email-error").text("Email is required");
+        hasError = true;
+      }
+      
+      if (!phone.trim()) {
+        $("#phone-error").text("Phone number is required");
+        hasError = true;
+      }
+
+      // Check if at least one opinion is selected
       $(".opinion").each(function() {
-        opinions.push($(this).val());
+        var opinion = $(this).val();
+        opinions.push(opinion);
+        if (opinion !== "yes" && opinion !== "no") {
+          $("#opinion-error").text("Please select Yes or No for all opinions");
+          hasError = true;
+        }
       });
 
-      // Send the order status, form data, and opinions to the server
-      var orderStatus = isAscending ? 'correct' : 'incorrect';
-      $.post('submit.php', {
-        status: orderStatus,
-        name: name,
-        email: email,
-        phone: phone,
-        opinion: opinions
-      }, function(response) {
-        alert(response);
-      });
+      // Submit the form if no errors
+      if (!hasError) {
+        var listItems = $(".sortable-list li").map(function() {
+          return $(this).text();
+        }).get();
+
+        // Check if the list is arranged in ascending order
+        var isAscending = true;
+        for (var i = 1; i < listItems.length; i++) {
+          if (listItems[i] < listItems[i - 1]) {
+            isAscending = false;
+            break;
+          }
+        }
+
+        // Send the order status, form data, and opinions to the server
+        var orderStatus = isAscending ? 'correct' : 'incorrect';
+        $.post('submit.php', {
+          status: orderStatus,
+          name: name,
+          email: email,
+          phone: phone,
+          opinion: opinions
+        }, function(response) {
+          alert(response);
+        });
+      }
     }
   </script>
 </head>
@@ -80,6 +114,24 @@
   </ul>
   
   <div class="form-section">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+    <div class="error-message" id="name-error"></div>
+  </div>
+  
+  <div class="form-section">
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+    <div class="error-message" id="email-error"></div>
+  </div>
+  
+  <div class="form-section">
+    <label for="phone">Phone Number:</label>
+    <input type="tel" id="phone" name="phone" required>
+    <div class="error-message" id="phone-error"></div>
+  </div>
+  
+  <div class="form-section">
     <label for="opinion1">Opinion 1:</label>
     <select id="opinion1" name="opinion1" class="opinion" required>
       <option value="">Select an option</option>
@@ -87,9 +139,11 @@
       <option value="no">No</option>
     </select>
   </div>
+  
   <div class="form-section">
     <label for="opinion2">Opinion 2:</label>
     <select id="opinion2" name="opinion2" class="opinion" required>
+      <option value="">Select an option</option>
       <option value="yes">Yes</option>
       <option value="no">No</option>
     </select>
@@ -199,21 +253,10 @@
       <option value="no">No</option>
     </select>
   </div>
-  <!-- Repeat the above two lines for Opinion 3 to Opinion 17 -->
-  <div class="form-section">
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" required>
-  </div>
+  <!-- Repeat the above lines for Opinion 3 to Opinion 17 -->
   
-  <div class="form-section">
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required>
-  </div>
+  <div class="error-message" id="opinion-error"></div>
   
-  <div class="form-section">
-    <label for="phone">Phone Number:</label>
-    <input type="tel" id="phone" name="phone" required>
-  </div>
   <button onclick="submitOrder()">Submit Order</button>
 </body>
 </html>
