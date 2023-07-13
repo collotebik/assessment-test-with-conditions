@@ -19,8 +19,8 @@
       margin-bottom: 20px;
     }
 
-    .form-field {
-      margin-bottom: 10px;
+    .form-section {
+      margin-bottom: 20px;
     }
   </style>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -35,10 +35,6 @@
         return $(this).text();
       }).get();
 
-      var name = $("#name").val();
-      var email = $("#email").val();
-      var phone = $("#phone").val();
-
       // Check if the list is arranged in ascending order
       var isAscending = true;
       for (var i = 1; i < listItems.length; i++) {
@@ -48,9 +44,24 @@
         }
       }
 
-      // Send the order status and additional information to the server
+      // Retrieve form data
+      var name = $("#name").val();
+      var email = $("#email").val();
+      var phone = $("#phone").val();
+      var opinions = [];
+      $(".opinion").each(function() {
+        opinions.push($(this).val());
+      });
+
+      // Send the order status, form data, and opinions to the server
       var orderStatus = isAscending ? 'correct' : 'incorrect';
-      $.post('submit.php', { status: orderStatus, name: name, email: email, phone: phone }, function(response) {
+      $.post('submit.php', {
+        status: orderStatus,
+        name: name,
+        email: email,
+        phone: phone,
+        opinion: opinions
+      }, function(response) {
         alert(response);
       });
     }
@@ -58,6 +69,7 @@
 </head>
 <body>
   <h1>Ordering List</h1>
+  
   <p>Drag and drop the items to put them in the desired order:</p>
   <ul class="sortable-list">
     <li>Item 1</li>
@@ -66,22 +78,142 @@
     <li>Item 4</li>
     <li>Item 5</li>
   </ul>
-
-  <div class="form-field">
+  
+  <div class="form-section">
+    <label for="opinion1">Opinion 1:</label>
+    <select id="opinion1" name="opinion1" class="opinion" required>
+      <option value="">Select an option</option>
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
+    </select>
+  </div>
+  <div class="form-section">
+    <label for="opinion2">Opinion 2:</label>
+    <select id="opinion2" name="opinion2" class="opinion" required>
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
+    </select>
+  </div>
+  <div class="form-section">
+    <label for="opinion3">Opinion 2:</label>
+    <select id="opinion3" name="opinion3" class="opinion" required>
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
+    </select>
+  </div>
+  <div class="form-section">
+    <label for="opinion4">Opinion 2:</label>
+    <select id="opinion4" name="opinion4" class="opinion" required>
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
+    </select>
+  </div>
+  <div class="form-section">
+    <label for="opinion5">Opinion 2:</label>
+    <select id="opinion5" name="opinion5" class="opinion" required>
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
+    </select>
+  </div>
+  <div class="form-section">
+    <label for="opinion6">Opinion 2:</label>
+    <select id="opinion6" name="opinion6" class="opinion" required>
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
+    </select>
+  </div>
+  <div class="form-section">
+    <label for="opinion7">Opinion 2:</label>
+    <select id="opinion7" name="opinion7" class="opinion" required>
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
+    </select>
+  </div>
+  <div class="form-section">
+    <label for="opinion8">Opinion 2:</label>
+    <select id="opinion8" name="opinion8" class="opinion" required>
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
+    </select>
+  </div>
+  <div class="form-section">
+    <label for="opinion9">Opinion 2:</label>
+    <select id="opinion9" name="opinion9" class="opinion" required>
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
+    </select>
+  </div>
+  <div class="form-section">
+    <label for="opinion10">Opinion 2:</label>
+    <select id="opinion10" name="opinion10" class="opinion" required>
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
+    </select>
+  </div>
+  <div class="form-section">
+    <label for="opinion11">Opinion 2:</label>
+    <select id="opinion11" name="opinion11" class="opinion" required>
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
+    </select>
+  </div>
+  <div class="form-section">
+    <label for="opinion12">Opinion 2:</label>
+    <select id="opinion12" name="opinion12" class="opinion" required>
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
+    </select>
+  </div>
+  <div class="form-section">
+    <label for="opinion13">Opinion 2:</label>
+    <select id="opinion13" name="opinion13" class="opinion" required>
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
+    </select>
+  </div>
+  <div class="form-section">
+    <label for="opinion14">Opinion 2:</label>
+    <select id="opinion14" name="opinion14" class="opinion" required>
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
+    </select>
+  </div>
+  <div class="form-section">
+    <label for="opinion15">Opinion 2:</label>
+    <select id="opinion15" name="opinion15" class="opinion" required>
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
+    </select>
+  </div>
+  <div class="form-section">
+    <label for="opinion16">Opinion 2:</label>
+    <select id="opinion16" name="opinion16" class="opinion" required>
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
+    </select>
+  </div>
+  <div class="form-section">
+    <label for="opinion17">Opinion 2:</label>
+    <select id="opinion17" name="opinion17" class="opinion" required>
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
+    </select>
+  </div>
+  <!-- Repeat the above two lines for Opinion 3 to Opinion 17 -->
+  <div class="form-section">
     <label for="name">Name:</label>
-    <input type="text" id="name" name="name">
+    <input type="text" id="name" name="name" required>
   </div>
-
-  <div class="form-field">
+  
+  <div class="form-section">
     <label for="email">Email:</label>
-    <input type="email" id="email" name="email">
+    <input type="email" id="email" name="email" required>
   </div>
-
-  <div class="form-field">
-    <label for="phone">Phone:</label>
-    <input type="text" id="phone" name="phone">
+  
+  <div class="form-section">
+    <label for="phone">Phone Number:</label>
+    <input type="tel" id="phone" name="phone" required>
   </div>
-
   <button onclick="submitOrder()">Submit Order</button>
 </body>
 </html>

@@ -3,21 +3,25 @@
 <head>
   <title>Order Results</title>
   <style>
-    table {
-      border-collapse: collapse;
-      width: 100%;
+    .section {
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+      padding: 10px;
+      cursor: pointer;
     }
-
-    th, td {
-      padding: 8px;
-      text-align: left;
-      border-bottom: 1px solid #ddd;
-    }
-
-    tr:nth-child(even) {
-      background-color: #f2f2f2;
+    
+    .section-content {
+      display: none;
     }
   </style>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('.section').click(function() {
+        $(this).find('.section-content').slideToggle();
+      });
+    });
+  </script>
 </head>
 <body>
   <h1>Order Results</h1>
@@ -36,25 +40,32 @@
         die('Connection failed: ' . $conn->connect_error);
     }
 
-    // Retrieve the order status and additional information from the database
+    // Retrieve the order status, name, email, phone, and opinions from the database
     $sql = 'SELECT * FROM order_status';
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
-        echo '<table>';
-        echo '<tr><th>ID</th><th>Status</th><th>Name</th><th>Email</th><th>Phone</th></tr>';
-
         while ($row = $result->fetch_assoc()) {
-            echo '<tr>';
-            echo '<td>' . $row['id'] . '</td>';
-            echo '<td>' . $row['status'] . '</td>';
-            echo '<td>' . $row['name'] . '</td>';
-            echo '<td>' . $row['email'] . '</td>';
-            echo '<td>' . $row['phone'] . '</td>';
-            echo '</tr>';
+            echo '<div class="section">';
+            echo '<h3>Order ID: ' . $row['client'] . ' - Status: ' . $row['status'] . '</h3>';
+            echo '<div class="section-content">';
+            echo '<p><strong>Name:</strong> ' . $row['name'] . '</p>';
+            echo '<p><strong>Email:</strong> ' . $row['email'] . '</p>';
+            echo '<p><strong>Phone:</strong> ' . $row['phone'] . '</p>';
+            echo '<p><strong>Opinions:</strong></p>';
+            
+            // Output each opinion
+            for ($i = 1; $i <= 17; $i++) {
+                $opinionColumn = 'opinion' . $i;
+                $opinionValue = $row[$opinionColumn];
+                if (!empty($opinionValue)) {
+                    echo '<p><strong>Opinion ' . $i . ':</strong> ' . $opinionValue . '</p>';
+                }
+            }
+            
+            echo '</div>';
+            echo '</div>';
         }
-
-        echo '</table>';
     } else {
         echo 'No order results found.';
     }
