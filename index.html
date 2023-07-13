@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ordering List</title>
+  <style>
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    li {
+      padding: 10px;
+      border: 1px solid #ccc;
+      cursor: move;
+    }
+
+    .sortable-list {
+      margin-bottom: 20px;
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $(".sortable-list").sortable();
+    });
+
+    function submitOrder() {
+      var listItems = $(".sortable-list li").map(function() {
+        return $(this).text();
+      }).get();
+
+      // Check if the list is arranged in ascending order
+      var isAscending = true;
+      for (var i = 1; i < listItems.length; i++) {
+        if (listItems[i] < listItems[i - 1]) {
+          isAscending = false;
+          break;
+        }
+      }
+
+      // Send the order status to the server
+      var orderStatus = isAscending ? 'correct' : 'incorrect';
+      $.post('submit.php', { status: orderStatus }, function(response) {
+        alert(response);
+      });
+    }
+  </script>
+</head>
+<body>
+  <h1>Ordering List</h1>
+  <p>Drag and drop the items to put them in the desired order:</p>
+  <ul class="sortable-list">
+    <li>Item 1</li>
+    <li>Item 2</li>
+    <li>Item 3</li>
+    <li>Item 4</li>
+    <li>Item 5</li>
+  </ul>
+  <button onclick="submitOrder()">Submit Order</button>
+</body>
+</html>
