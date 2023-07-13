@@ -18,6 +18,10 @@
     .sortable-list {
       margin-bottom: 20px;
     }
+
+    .form-field {
+      margin-bottom: 10px;
+    }
   </style>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
@@ -31,6 +35,10 @@
         return $(this).text();
       }).get();
 
+      var name = $("#name").val();
+      var email = $("#email").val();
+      var phone = $("#phone").val();
+
       // Check if the list is arranged in ascending order
       var isAscending = true;
       for (var i = 1; i < listItems.length; i++) {
@@ -40,9 +48,9 @@
         }
       }
 
-      // Send the order status to the server
-      var orderStatus = isAscending ? 'Self Love' : 'No Self Love';
-      $.post('submit.php', { status: orderStatus }, function(response) {
+      // Send the order status and additional information to the server
+      var orderStatus = isAscending ? 'correct' : 'incorrect';
+      $.post('submit.php', { status: orderStatus, name: name, email: email, phone: phone }, function(response) {
         alert(response);
       });
     }
@@ -58,6 +66,22 @@
     <li>Item 4</li>
     <li>Item 5</li>
   </ul>
+
+  <div class="form-field">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name">
+  </div>
+
+  <div class="form-field">
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email">
+  </div>
+
+  <div class="form-field">
+    <label for="phone">Phone:</label>
+    <input type="text" id="phone" name="phone">
+  </div>
+
   <button onclick="submitOrder()">Submit Order</button>
 </body>
 </html>

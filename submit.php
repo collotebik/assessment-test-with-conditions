@@ -5,6 +5,7 @@ $dbUsername = 'collo'; // Replace with your database username
 $dbPassword = 'deanna21'; // Replace with your database password
 $dbName = 'collo'; // Replace with your database name
 
+// Create a datab
 // Create a database connection
 $conn = new mysqli($host, $dbUsername, $dbPassword, $dbName);
 
@@ -13,13 +14,16 @@ if ($conn->connect_error) {
     die('Connection failed: ' . $conn->connect_error);
 }
 
-// Retrieve the order status from the request
+// Retrieve the order status and additional information from the request
 $orderStatus = $_POST['status'];
+$name = $_POST['name'];
+$email = $_POST['email'];
+$phone = $_POST['phone'];
 
-// Insert the order status into the database
-$sql = "INSERT INTO order_status (status) VALUES ('$orderStatus')";
+// Insert the order status and additional information into the database
+$sql = "INSERT INTO order_status (status, name, email, phone) VALUES ('$orderStatus', '$name', '$email', '$phone')";
 if ($conn->query($sql) === true) {
-    echo 'Order status submitted successfully.';
+    echo 'Order status and information submitted successfully.';
 } else {
     echo 'Error: ' . $conn->error;
 }
