@@ -41,7 +41,7 @@
       }
 
       // Send the order status to the server
-      var orderStatus = isAscending ? 'correct' : 'incorrect';
+      var orderStatus = isAscending ? 'Self Love' : 'No Self Love';
       $.post('submit.php', { status: orderStatus }, function(response) {
         alert(response);
       });
