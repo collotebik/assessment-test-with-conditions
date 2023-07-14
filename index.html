@@ -61,12 +61,12 @@
         hasError = true;
       }
 
-      // Check if at least one opinion is selected
+      // Check if at least one opinion is filled
       $(".opinion").each(function() {
         var opinion = $(this).val();
         opinions.push(opinion);
-        if (opinion !== "yes" && opinion !== "no") {
-          $("#opinion-error").text("Please select Yes or No for all opinions");
+        if (!opinion.trim()) {
+          $("#opinion-error").text("Please fill in all opinions");
           hasError = true;
         }
       });
@@ -132,128 +132,74 @@
   </div>
   
   <div class="form-section">
-    <label for="opinion1">Opinion 1:</label>
-    <select id="opinion1" name="opinion1" class="opinion" required>
-      <option value="">Select an option</option>
-      <option value="yes">Yes</option>
-      <option value="no">No</option>
-    </select>
+    <label for="opinion1">1 :</label>
+    <input type="text" id="opinion1" name="opinion1" class="opinion" required>
   </div>
   
   <div class="form-section">
-    <label for="opinion2">Opinion 2:</label>
-    <select id="opinion2" name="opinion2" class="opinion" required>
-      <option value="">Select an option</option>
-      <option value="yes">Yes</option>
-      <option value="no">No</option>
-    </select>
+    <label for="opinion2">2 :</label>
+    <input type="text" id="opinion2" name="opinion2" class="opinion" required>
   </div>
   <div class="form-section">
-    <label for="opinion3">Opinion 2:</label>
-    <select id="opinion3" name="opinion3" class="opinion" required>
-      <option value="yes">Yes</option>
-      <option value="no">No</option>
-    </select>
+    <label for="opinion3">3 :</label>
+    <input type="text" id="opinion3" name="opinion3" class="opinion" required>
   </div>
   <div class="form-section">
-    <label for="opinion4">Opinion 2:</label>
-    <select id="opinion4" name="opinion4" class="opinion" required>
-      <option value="yes">Yes</option>
-      <option value="no">No</option>
-    </select>
+    <label for="opinion4">4 :</label>
+    <input type="text" id="opinion4" name="opinion4" class="opinion" required>
   </div>
   <div class="form-section">
-    <label for="opinion5">Opinion 2:</label>
-    <select id="opinion5" name="opinion5" class="opinion" required>
-      <option value="yes">Yes</option>
-      <option value="no">No</option>
-    </select>
+    <label for="opinion5">5 :</label>
+    <input type="text" id="opinion5" name="opinion5" class="opinion" required>
   </div>
   <div class="form-section">
-    <label for="opinion6">Opinion 2:</label>
-    <select id="opinion6" name="opinion6" class="opinion" required>
-      <option value="yes">Yes</option>
-      <option value="no">No</option>
-    </select>
+    <label for="opinion6">6 :</label>
+    <input type="text" id="opinion6" name="opinion6" class="opinion" required>
   </div>
   <div class="form-section">
-    <label for="opinion7">Opinion 2:</label>
-    <select id="opinion7" name="opinion7" class="opinion" required>
-      <option value="yes">Yes</option>
-      <option value="no">No</option>
-    </select>
+    <label for="opinion7">7 :</label>
+    <input type="text" id="opinion7" name="opinion7" class="opinion" required>
   </div>
   <div class="form-section">
-    <label for="opinion8">Opinion 2:</label>
-    <select id="opinion8" name="opinion8" class="opinion" required>
-      <option value="yes">Yes</option>
-      <option value="no">No</option>
-    </select>
+    <label for="opinion8">8 :</label>
+    <input type="text" id="opinion8" name="opinion8" class="opinion" required>
   </div>
   <div class="form-section">
-    <label for="opinion9">Opinion 2:</label>
-    <select id="opinion9" name="opinion9" class="opinion" required>
-      <option value="yes">Yes</option>
-      <option value="no">No</option>
-    </select>
+    <label for="opinion9">9 :</label>
+    <input type="text" id="opinion9" name="opinion9" class="opinion" required>
   </div>
   <div class="form-section">
-    <label for="opinion10">Opinion 2:</label>
-    <select id="opinion10" name="opinion10" class="opinion" required>
-      <option value="yes">Yes</option>
-      <option value="no">No</option>
-    </select>
+    <label for="opinion10">10 :</label>
+    <input type="text" id="opinion10" name="opinion10" class="opinion" required>
   </div>
   <div class="form-section">
-    <label for="opinion11">Opinion 2:</label>
-    <select id="opinion11" name="opinion11" class="opinion" required>
-      <option value="yes">Yes</option>
-      <option value="no">No</option>
-    </select>
+    <label for="opinion11">11 :</label>
+    <input type="text" id="opinion11" name="opinion11" class="opinion" required>
   </div>
   <div class="form-section">
-    <label for="opinion12">Opinion 2:</label>
-    <select id="opinion12" name="opinion12" class="opinion" required>
-      <option value="yes">Yes</option>
-      <option value="no">No</option>
-    </select>
+    <label for="opinion12">12 :</label>
+    <input type="text" id="opinion12" name="opinion12" class="opinion" required>
   </div>
   <div class="form-section">
-    <label for="opinion13">Opinion 2:</label>
-    <select id="opinion13" name="opinion13" class="opinion" required>
-      <option value="yes">Yes</option>
-      <option value="no">No</option>
-    </select>
+    <label for="opinion13">13 :</label>
+    <input type="text" id="opinion13" name="opinion13" class="opinion" required>
   </div>
   <div class="form-section">
-    <label for="opinion14">Opinion 2:</label>
-    <select id="opinion14" name="opinion14" class="opinion" required>
-      <option value="yes">Yes</option>
-      <option value="no">No</option>
-    </select>
+    <label for="opinion14">14 :</label>
+    <input type="text" id="opinion14" name="opinion14" class="opinion" required>
   </div>
   <div class="form-section">
-    <label for="opinion15">Opinion 2:</label>
-    <select id="opinion15" name="opinion15" class="opinion" required>
-      <option value="yes">Yes</option>
-      <option value="no">No</option>
-    </select>
+    <label for="opinion15">15 :</label>
+    <input type="text" id="opinion15" name="opinion15" class="opinion" required>
   </div>
   <div class="form-section">
-    <label for="opinion16">Opinion 2:</label>
-    <select id="opinion16" name="opinion16" class="opinion" required>
-      <option value="yes">Yes</option>
-      <option value="no">No</option>
-    </select>
+    <label for="opinion16">16 :</label>
+    <input type="text" id="opinion16" name="opinion16" class="opinion" required>
   </div>
   <div class="form-section">
-    <label for="opinion17">Opinion 2:</label>
-    <select id="opinion17" name="opinion17" class="opinion" required>
-      <option value="yes">Yes</option>
-      <option value="no">No</option>
-    </select>
+    <label for="opinion17">17 :</label>
+    <input type="text" id="opinion17" name="opinion17" class="opinion" required>
   </div>
-  <!-- Repeat the above lines for Opinion 3 to Opinion 17 -->
   
   <div class="error-message" id="opinion-error"></div>
   
